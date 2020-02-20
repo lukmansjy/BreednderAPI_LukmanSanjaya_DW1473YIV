@@ -1,0 +1,1 @@
+exports.secretKey = 'rahasia-lho-bro'
