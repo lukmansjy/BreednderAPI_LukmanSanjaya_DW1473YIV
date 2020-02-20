@@ -25,7 +25,7 @@ Untuk melihat request API yang lain silakan pilih branch yang bersangkutan
 ### Login API
 [POST] http://localhost:5050/api/v1/login
 
-**Contoh Body JSON POST**
+**Contoh Login Body JSON POST**
 
 ```
 {
@@ -40,5 +40,41 @@ Untuk melihat request API yang lain silakan pilih branch yang bersangkutan
 {
     "email": "lukman.rocks@live.com",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU4MjIwMTUwNH0.BiE5SXmHZD70cP5SAscjWezB5DdRW22nRkp7MAuQ6_0"
+}
+```
+
+### Register API
+[POST] http://localhost:5050/api/v1/register
+
+**Contoh Register Body JSON POST**
+
+```
+{
+   "breeder" : "Lukman X",
+   "email" : "lukman.rocks@live.com",
+   "password": "mypassword",
+   "phone": "081234567890",
+   "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+   "pet" : {
+        "name" : "Kucing Oren Bar Bar",
+        "gender" : "Male",
+        "spesies" : {
+              "id" : 1,
+              "name" : "Cat"
+          },
+       "age" : {
+              "id" : 3,
+              "name" : "Adult"
+         }
+   }
+} 
+```
+
+**Contoh Respon JSON**
+
+```
+{
+    "email": "lukman.rocks@live.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1ODIyMTk5Njd9.w6LKX2koiGsE3WVaE1DOsLczv9IrbzjqSHOwcb3vces"
 }
 ```
