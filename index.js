@@ -11,6 +11,7 @@ app.use(bodyParer.json())
 
 app.group('/api/v1', (router)=>{
     router.post('/login', AuthController.login)
+    router.post('/register', AuthController.register)
 } )
 
 
