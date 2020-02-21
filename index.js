@@ -25,10 +25,15 @@ app.group('/api/v1', (router)=>{
 
     // Add Pet
     router.post('/pet', authenticated, PetController.insertPet)
-    // Get All Pet
+    // Get All Pets
     router.get('/pets', authenticated, PetController.getPets)
+    // Edit Pet
     router.put('/pet/:id', authenticated, PetController.updatePet)
+    // Delete Pet
     router.delete('/pet/:id', authenticated, PetController.deletePet)
+    // Get Detail Pet
+    router.get('/pet/:id', PetController.getPet)
+
 } )
 
 app.use(function (err, req, res, next) {

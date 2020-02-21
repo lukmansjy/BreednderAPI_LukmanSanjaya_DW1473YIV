@@ -6,6 +6,7 @@ API backend yang dibuat menggunakan Express Js.
 * 2.Register_API - Berisi API untuk register
 * 3.Species_API - Berisi API untuk species
 * 4.Pet_API - Berisi API untuk Pet
+* 5.PetDetail_API - Berisi API untuk get detail pet by id
 
 Untuk menjalankan project  ini silakan jalankan:
 
@@ -377,3 +378,33 @@ Respon JSON
 }
 ```
 
+### PET DETAIL API
+[GET] http://localhost:5050/api/v1/pet/1 Berisi API untuk get pet by id.
+
+**Respon Body**
+
+```
+{
+    "id": 1,
+    "name": "Kucing Bar Bar",
+    "gender": "Male",
+    "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+    "photo": "https://i.imgur.com/2x0oIpb.jpg",
+    "createdAt": "2020-01-20T17:50:00.000Z",
+    "updatedAt": "2020-01-20T17:50:00.000Z",
+    "species": {
+        "id": 1,
+        "name": "Cat"
+    },
+    "age": {
+        "id": 3,
+        "name": "Adult"
+    },
+    "user": {
+        "id": 1,
+        "breeder": "Lukman Sanjaya",
+        "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+        "phone": "082226455525"
+    }
+}
+```

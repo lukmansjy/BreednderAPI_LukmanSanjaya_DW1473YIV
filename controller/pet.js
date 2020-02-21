@@ -214,3 +214,38 @@ exports.deletePet = (req, res) =>{
         })
     }
 }
+
+// Get Detail Pet
+exports.getPet = (req, res) =>{
+    const idPet = req.params.id
+    Pet.findOne({
+        include: [
+          {
+            model: Species,
+            attributes: ["id", "name"],
+            as: "species"
+          },
+          {
+            model: Age,
+            attributes: ["id", "name"],
+            as: "age"
+          },
+          {
+            model: User,
+            attributes: ["id", "breeder", "address", "phone"],
+            as: "user"
+          }
+        ],
+        where: {id: idPet},
+        attributes: ['id', 'name', 'gender', 'about_pet', 'photo', 'createdAt', 'updatedAt']
+    }).then( data=>{
+        if(data){
+            res.send(data)
+        }else{
+            res.status(400).send({
+                error: true,
+                message: "Pet success update, errror get data pet details"
+            })
+        }
+    })
+}
