@@ -83,6 +83,7 @@ Untuk melihat request API yang lain silakan pilih branch yang bersangkutan
 
 ### Species API
 [POST] http://localhost:5050/api/v1/species `Add Species`
+
 [GET] http://localhost:5050/api/v1/species `Get All Species`
 
 **Contoh Add Species**
