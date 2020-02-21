@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-// const User = require('../models').user
-// const Pet = require('../models').pet
+
 const { secretKey } = require('../config/secretKey')
 const Model = require('../models')
 const User = Model.user
