@@ -7,6 +7,7 @@ API backend yang dibuat menggunakan Express Js.
 * 3.Species_API - Berisi API untuk species
 * 4.Pet_API - Berisi API untuk Pet
 * 5.PetDetail_API - Berisi API untuk get detail pet by id
+* 6.User_API - Beiri API untuk user
 
 Untuk menjalankan project  ini silakan jalankan:
 
@@ -406,5 +407,78 @@ Respon JSON
         "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
         "phone": "082226455525"
     }
+}
+```
+### USER API ###
+[GET] http://localhost:5050/api/v1/user/1 API untuk get detail user
+
+[PUT] http://localhost:5050/api/v1/user/1 API untuk edit data user
+
+[DELETE] http://localhost:5050/api/v1/user/3 API untuk delete user
+
+**NOTE**
+Semua API user ini memerlukan jwt pada header
+
+Contoh:
+
+```
+Authorization: Bearer jwt_respon_login
+
+contoh:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1ODIyMTk5Njd9.w6LKX2koiGsE3WVaE1DOsLczv9IrbzjqSHOwcb3vces
+
+```
+
+**Get Detail User**
+
+API GET: http://localhost:5050/api/v1/user/1
+
+Respon JSON body:
+
+```
+{
+    "breeder": "Lukman Sanjaya",
+    "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+    "phone": "082226455525",
+    "createdAt": "2020-01-20T17:50:00.000Z",
+    "updatedAt": "2020-02-21T16:25:30.000Z"
+}
+```
+
+**Edit User**
+
+API PUT: http://localhost:5050/api/v1/user/1
+
+Body JSON:
+
+```
+{
+   "breeder" : "Lukman Sjy",
+   "address" : "Kab. Wonogiri, Jawa Tengah",
+   "phone" : "081234567890"
+}
+```
+
+Respon JSON:
+
+```
+{
+    "breeder": "Lukman Sjy",
+    "address": "Kab. Wonogiri, Jawa Tengah",
+    "phone": "081234567890",
+    "createdAt": "2020-01-20T17:50:00.000Z",
+    "updatedAt": "2020-02-21T16:30:38.000Z"
+}
+```
+
+**Delete User**
+
+API DELETE: http://localhost:5050/api/v1/user/5
+
+Respon JSON:
+
+```
+{
+    "id": 5
 }
 ```

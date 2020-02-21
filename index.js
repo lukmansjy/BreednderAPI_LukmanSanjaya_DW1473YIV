@@ -9,6 +9,7 @@ const { authenticated } = require('./middleware')
 const AuthController = require('./controller/auth')
 const SpeciesController = require('./controller/species')
 const PetController = require('./controller/pet')
+const UserController = require('./controller/user')
 
 const app = express()
 const port = 5050
@@ -34,6 +35,12 @@ app.group('/api/v1', (router)=>{
     // Get Detail Pet
     router.get('/pet/:id', PetController.getPet)
 
+    // Get Detail User
+    router.get('/user/:id', UserController.getUser)
+    // Update User
+    router.put('/user/:id', authenticated, UserController.updateUser)
+    // Delete User
+    router.delete('/user/:id', authenticated, UserController.deleteUser)
 } )
 
 app.use(function (err, req, res, next) {
