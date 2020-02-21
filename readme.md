@@ -4,7 +4,8 @@ API backend yang dibuat menggunakan Express Js.
 ## Branch
 * 1.Login_API - Berisi API untuk login
 * 2.Register_API - Berisi API untuk register
-* 3.Species_API - Berisi API untuk register
+* 3.Species_API - Berisi API untuk species
+* 4.Pet_API - Berisi API untuk Pet
 
 Untuk menjalankan project  ini silakan jalankan:
 
