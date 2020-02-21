@@ -115,6 +115,7 @@ Body:
 ```
 
 **Contoh Get All Species Body JSON POST**
+
 Get All species tidak memerlukan header authorization jwt
 
 **Contoh Respon JSON Get All Species**
