@@ -154,3 +154,224 @@ Get All species tidak memerlukan header authorization jwt
     }
 ]
 ```
+
+### Pet API
+[POST] http://localhost:5050/api/v1/pet `Add Pet`
+
+[GET] http://localhost:5050/api/v1/pets `Get All Pets`
+
+[PUT] http://localhost:5050/api/v1/pet/6 `Edit Pet By Id`
+
+[DELETE] http://localhost:5050/api/v1/pet/2 `Delete Pet By Id`
+
+**NOTE**
+
+GET Pet, PUT Pet, dan DELETE Pet memerlukan jwt pada header
+
+Contoh:
+
+```
+Authorization: Bearer jwt_respon_login
+
+contoh:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1ODIyMTk5Njd9.w6LKX2koiGsE3WVaE1DOsLczv9IrbzjqSHOwcb3vces
+
+```
+
+
+**Contoh Add Pet**
+
+Contoh Body JSON Add Pet:
+
+```
+{
+   "name" : "Kucing Jaman Now",
+   "gender" : "Male",
+   "species" : {
+      "id" : 1,
+      "name" : "Cat"
+   },
+   "age" : {
+   	  "id": 3,
+   	  "name": "Adult"
+   	},
+   "about_pet" : "Kucing tergaul sedunia",
+   "photo" : "https://img.com/cat.jpg"
+}
+
+```
+
+Respon JSON
+
+```
+{
+    "id": 4,
+    "name": "Kucing Jaman Now",
+    "gender": "Male",
+    "about_pet": "Kucing tergaul sedunia",
+    "photo": "https://img.com/cat.jpg",
+    "createdAt": "2020-02-21T14:00:17.000Z",
+    "updatedAt": "2020-02-21T14:00:17.000Z",
+    "species": {
+        "id": 1,
+        "name": "Cat"
+    },
+    "age": {
+        "id": 3,
+        "name": "Adult"
+    },
+    "user": {
+        "id": 1,
+        "breeder": "Lukman Sanjaya",
+        "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+        "phone": "082226455525"
+    }
+}
+```
+
+**Get All Pets**
+
+GET API http://localhost:5050/api/v1/pets
+
+Respon Body
+
+```
+[
+    {
+        "id": 1,
+        "name": "Kucing Bar Bar",
+        "gender": "Male",
+        "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+        "photo": "https://i.imgur.com/2x0oIpb.jpg",
+        "createdAt": "2020-01-20T17:50:00.000Z",
+        "updatedAt": "2020-01-20T17:50:00.000Z",
+        "species": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "user": {
+            "id": 1,
+            "breeder": "Lukman Sanjaya",
+            "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+            "phone": "082226455525"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Kucing Oren",
+        "gender": "Male",
+        "about_pet": "Kucing Bar Bar Tapi Luchu",
+        "photo": "https://i.imgur.com/pqggrK0.jpg",
+        "createdAt": "2020-01-20T17:50:00.000Z",
+        "updatedAt": "2020-01-20T17:50:00.000Z",
+        "species": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "user": {
+            "id": 2,
+            "breeder": "Domo User",
+            "address": "Cikupa, Kab. Tangerang, Banten",
+            "phone": "081234567890"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Kucing Janda",
+        "gender": "Famale",
+        "about_pet": "Kucing janda beranak lima, mencari kucing pria yang bertangung jawab",
+        "photo": "https://i.imgur.com/9if0pJQ.jpg",
+        "createdAt": "2020-01-20T17:50:00.000Z",
+        "updatedAt": "2020-01-20T17:50:00.000Z",
+        "species": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "user": {
+            "id": 3,
+            "breeder": "Demo Account",
+            "address": "Surakarta, Jawa Tengah",
+            "phone": "082345678901"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Kucing Jaman Now",
+        "gender": "Male",
+        "about_pet": "Kucing tergaul sedunia",
+        "photo": "https://img.com/cat.jpg",
+        "createdAt": "2020-02-21T14:00:17.000Z",
+        "updatedAt": "2020-02-21T14:00:17.000Z",
+        "species": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "user": {
+            "id": 1,
+            "breeder": "Lukman Sanjaya",
+            "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+            "phone": "082226455525"
+        }
+    }
+]
+```
+
+**Edit PET**
+
+PUT API http://localhost:5050/api/v1/pet/4 6 adalah id pet yang ingin di edit.
+
+Contoh JSON BODY:
+
+```
+{
+  "name": "Kucing Jaman Now Dan NOW",
+  "gender": "Male",
+  "species": {
+    "id": 1
+  },
+  "age": {
+  	"id": 2
+  },
+  "about_pet": "Kucing yang terlalu gaul",
+  "photo": "https://img.com/cat-2.jpg"
+}
+```
+
+Contoh Respon JSON
+
+```
+{
+    "id": 4,
+    "name": "Kucing Jaman Now Dan NOW",
+    "gender": "Male",
+    "about_pet": "Kucing yang terlalu gaul",
+    "photo": "https://img.com/cat-2.jpg",
+    "createdAt": "2020-02-21T14:00:17.000Z",
+    "updatedAt": "2020-02-21T14:09:51.000Z",
+    "species": {
+        "id": 1,
+        "name": "Cat"
+    },
+    "age": {
+        "id": 2,
+        "name": "Teenager"
+    },
+    "user": {
+        "id": 1,
+        "breeder": "Lukman Sanjaya",
+        "address": "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+        "phone": "082226455525"
+    }
+}
+```
+
+**Delete PET**
+DELETE API http://localhost:5050/api/v1/pet/4
+
+Respon JSON
+
+```
+{
+    "id": "4"
+}
+```
