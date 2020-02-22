@@ -7,7 +7,8 @@ API backend yang dibuat menggunakan Express Js.
 * 3.Species_API - Berisi API untuk species
 * 4.Pet_API - Berisi API untuk Pet
 * 5.PetDetail_API - Berisi API untuk get detail pet by id
-* 6.User_API - Beiri API untuk user
+* 6.User_API - Beirisi API untuk user
+* 7.Match_API - Berisi Match API
 
 Untuk menjalankan project  ini silakan jalankan:
 
@@ -482,3 +483,337 @@ Respon JSON:
     "id": 5
 }
 ```
+
+### Match API ###
+API untuk mach pets
+
+[GET] http://localhost:5050/api/v1/match?pet_id=1&pet_id_liked=2 => Get macth pet ex like pet id 1 liked id 2
+
+[POST] http://localhost:5050/api/v1/match => Create match pet
+
+[PATCH] http://localhost:5050/api/v1/match => Update match pet
+
+[GET] http://localhost:5050/api/v1/matches?pet_id=1&status=true => Get data match ex ped id 1 status macth true
+
+**Note**
+
+Memerlukan header jwt:
+
+```
+Authorization: Bearer jwt_respon_login
+
+contoh:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE1ODIyMTk5Njd9.w6LKX2koiGsE3WVaE1DOsLczv9IrbzjqSHOwcb3vces
+
+```
+
+**GET MACTH PET**
+
+[GET] http://localhost:5050/api/v1/match?pet_id=1&pet_id_liked=2
+
+Respon JSON:
+
+```
+{
+    "id": 1,
+    "status": true,
+    "pet": {
+        "id": 1,
+        "name": "Kucing Bar Bar",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 1,
+            "name": "Lukman Sjy",
+            "address": "Kab. Wonogiri, Jawa Tengah",
+            "phone": "081234567890"
+        },
+        "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+        "photo": "https://i.imgur.com/2x0oIpb.jpg"
+    },
+    "pet_liked": {
+        "id": 2,
+        "name": "Kucing Oren",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 2,
+            "name": "Domo User",
+            "address": "Cikupa, Kab. Tangerang, Banten",
+            "phone": "081234567890"
+        },
+        "about_pet": "Kucing Bar Bar Tapi Luchu",
+        "photo": "https://i.imgur.com/pqggrK0.jpg"
+    },
+    "createdAt": "2020-01-20T17:50:00.000Z",
+    "updatedAt": "2020-01-20T17:50:00.000Z"
+}
+```
+
+**CREATE MATCH PET**
+
+[POST] http://localhost:5050/api/v1/match
+
+JSON BODY:
+
+```
+{
+  "pet_id" : "1",
+  "pet_id_liked" : "4",
+  "status" : false
+}
+```
+
+RESPON JSON:
+
+```
+{
+    "id": 8,
+    "status": false,
+    "pet": {
+        "id": 1,
+        "name": "Kucing Bar Bar",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 1,
+            "name": "Lukman Sjy",
+            "address": "Kab. Wonogiri, Jawa Tengah",
+            "phone": "081234567890"
+        },
+        "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+        "photo": "https://i.imgur.com/2x0oIpb.jpg"
+    },
+    "pet_liked": {
+        "id": 4,
+        "name": "Kucing Garong",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 5,
+            "name": "Paijo",
+            "address": "Kab. Wonogiri, Jawa Tengah",
+            "phone": "081234567899"
+        },
+        "about_pet": null,
+        "photo": null
+    },
+    "createdAt": "2020-02-22T08:07:17.000Z",
+    "updatedAt": "2020-02-22T08:07:17.000Z"
+}
+```
+
+**UPDATE MATCH PET**
+
+[PATCH] http://localhost:5050/api/v1/match
+
+JSON BODY:
+
+```
+{
+  "pet_id" : "1",
+  "pet_id_liked" : "4",
+  "status" : true
+}
+```
+
+RESPON JSON:
+
+```
+{
+    "id": 8,
+    "status": true,
+    "pet": {
+        "id": 1,
+        "name": "Kucing Bar Bar",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 1,
+            "name": "Lukman Sjy",
+            "address": "Kab. Wonogiri, Jawa Tengah",
+            "phone": "081234567890"
+        },
+        "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+        "photo": "https://i.imgur.com/2x0oIpb.jpg"
+    },
+    "pet_liked": {
+        "id": 4,
+        "name": "Kucing Garong",
+        "gender": "Male",
+        "spesies": {
+            "id": 1,
+            "name": "Cat"
+        },
+        "age": "Adult",
+        "user": {
+            "id": 5,
+            "name": "Paijo",
+            "address": "Kab. Wonogiri, Jawa Tengah",
+            "phone": "081234567899"
+        },
+        "about_pet": null,
+        "photo": null
+    },
+    "createdAt": "2020-02-22T08:07:17.000Z",
+    "updatedAt": "2020-02-22T08:11:13.000Z"
+}
+```
+
+**GET DATA MATCH**
+
+[GET] http://localhost:5050/api/v1/matches?pet_id=1&status=true
+
+RESPON JSON
+
+```
+[
+    {
+        "id": 1,
+        "status": true,
+        "pet": {
+            "id": 1,
+            "name": "Kucing Bar Bar",
+            "gender": "Male",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 1,
+                "name": "Lukman Sjy",
+                "address": "Kab. Wonogiri, Jawa Tengah",
+                "phone": "081234567890"
+            },
+            "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+            "photo": "https://i.imgur.com/2x0oIpb.jpg"
+        },
+        "pet_liked": {
+            "id": 2,
+            "name": "Kucing Oren",
+            "gender": "Male",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 2,
+                "name": "Domo User",
+                "address": "Cikupa, Kab. Tangerang, Banten",
+                "phone": "081234567890"
+            },
+            "about_pet": "Kucing Bar Bar Tapi Luchu",
+            "photo": "https://i.imgur.com/pqggrK0.jpg"
+        },
+        "createdAt": "2020-01-20T17:50:00.000Z",
+        "updatedAt": "2020-01-20T17:50:00.000Z"
+    },
+    {
+        "id": 2,
+        "status": true,
+        "pet": {
+            "id": 1,
+            "name": "Kucing Bar Bar",
+            "gender": "Male",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 1,
+                "name": "Lukman Sjy",
+                "address": "Kab. Wonogiri, Jawa Tengah",
+                "phone": "081234567890"
+            },
+            "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+            "photo": "https://i.imgur.com/2x0oIpb.jpg"
+        },
+        "pet_liked": {
+            "id": 3,
+            "name": "Kucing Janda",
+            "gender": "Famale",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 3,
+                "name": "Demo Account",
+                "address": "Surakarta, Jawa Tengah",
+                "phone": "082345678901"
+            },
+            "about_pet": "Kucing janda beranak lima, mencari kucing pria yang bertangung jawab",
+            "photo": "https://i.imgur.com/9if0pJQ.jpg"
+        },
+        "createdAt": "2020-01-20T17:50:00.000Z",
+        "updatedAt": "2020-01-20T17:50:00.000Z"
+    },
+    {
+        "id": 8,
+        "status": true,
+        "pet": {
+            "id": 1,
+            "name": "Kucing Bar Bar",
+            "gender": "Male",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 1,
+                "name": "Lukman Sjy",
+                "address": "Kab. Wonogiri, Jawa Tengah",
+                "phone": "081234567890"
+            },
+            "about_pet": "Kucing bar bar yang suka jatuhin barang dimeja",
+            "photo": "https://i.imgur.com/2x0oIpb.jpg"
+        },
+        "pet_liked": {
+            "id": 4,
+            "name": "Kucing Garong",
+            "gender": "Male",
+            "spesies": {
+                "id": 1,
+                "name": "Cat"
+            },
+            "age": "Adult",
+            "user": {
+                "id": 5,
+                "name": "Paijo",
+                "address": "Kab. Wonogiri, Jawa Tengah",
+                "phone": "081234567899"
+            },
+            "about_pet": null,
+            "photo": null
+        },
+        "createdAt": "2020-02-22T08:07:17.000Z",
+        "updatedAt": "2020-02-22T08:11:13.000Z"
+    }
+]
+```
+

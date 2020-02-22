@@ -7,6 +7,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   match.associate = function(models) {
     // associations can be defined here
+    match.belongsTo(models.pet, {
+      as: 'pet',
+      foreignKey: 'pet_id',
+    })
+    match.belongsTo(models.pet, {
+      as: 'pet_liked',
+      foreignKey: 'pet_like_id',
+    })
   };
   return match;
 };

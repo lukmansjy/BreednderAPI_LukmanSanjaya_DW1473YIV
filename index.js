@@ -10,6 +10,7 @@ const AuthController = require('./controller/auth')
 const SpeciesController = require('./controller/species')
 const PetController = require('./controller/pet')
 const UserController = require('./controller/user')
+const MatchController = require('./controller/match')
 
 const app = express()
 const port = 5050
@@ -41,6 +42,16 @@ app.group('/api/v1', (router)=>{
     router.put('/user/:id', authenticated, UserController.updateUser)
     // Delete User
     router.delete('/user/:id', authenticated, UserController.deleteUser)
+
+    // Check Macth Pet
+    router.get('/match', authenticated, MatchController.chcekMatchPet)
+    // Create Macth Pet
+    router.post('/match', authenticated, MatchController.createMatchPet)
+    // Update Macth Pet
+    router.patch('/match', authenticated, MatchController.updateMatchPet)
+    // Get Data Macth Pet
+    router.get('/matches', authenticated, MatchController.matchesPet)
+    
 } )
 
 app.use(function (err, req, res, next) {
