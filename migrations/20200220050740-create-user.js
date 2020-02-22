@@ -23,6 +23,9 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      admin: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

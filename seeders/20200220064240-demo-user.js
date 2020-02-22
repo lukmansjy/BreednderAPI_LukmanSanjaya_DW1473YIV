@@ -25,6 +25,7 @@ module.exports = {
         password: hashPassword,
         phone: "082226455525",
         address: "Kec. Selogiri, Kab. Wonogiri, Jawa Tengah",
+        admin: 1,
         createdAt: dateTime,
         updatedAt: dateTime
       },
@@ -34,6 +35,7 @@ module.exports = {
         password: hashPassword,
         phone: "081234567890",
         address: "Cikupa, Kab. Tangerang, Banten",
+        admin: 0,
         createdAt: dateTime,
         updatedAt: dateTime
       },
@@ -43,6 +45,7 @@ module.exports = {
         password: hashPassword,
         phone: "082345678901",
         address: "Surakarta, Jawa Tengah",
+        admin: 0,
         createdAt: dateTime,
         updatedAt: dateTime
       },
@@ -52,6 +55,7 @@ module.exports = {
         password: hashPassword,
         phone: "083456789012",
         address: "Sukoharjo, Jawa Tengah",
+        admin: 0,
         createdAt: dateTime,
         updatedAt: dateTime
       }

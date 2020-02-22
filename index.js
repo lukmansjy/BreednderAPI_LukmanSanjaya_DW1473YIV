@@ -11,6 +11,7 @@ const SpeciesController = require('./controller/species')
 const PetController = require('./controller/pet')
 const UserController = require('./controller/user')
 const MatchController = require('./controller/match')
+const PaymentController = require('./controller/payment')
 
 const app = express()
 const port = 5050
@@ -52,7 +53,11 @@ app.group('/api/v1', (router)=>{
     // Get Data Macth Pet
     router.get('/matches', authenticated, MatchController.matchesPet)
     
-} )
+    // Post data payment
+    router.post('/payment', authenticated, PaymentController.insertPayment)
+    // Update data paymane (ADMIN)
+    router.put('/payment/:id', authenticated, PaymentController.updatePayment)
+})
 
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {

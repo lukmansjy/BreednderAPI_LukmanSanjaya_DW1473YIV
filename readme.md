@@ -9,6 +9,7 @@ API backend yang dibuat menggunakan Express Js.
 * 5.PetDetail_API - Berisi API untuk get detail pet by id
 * 6.User_API - Beirisi API untuk user
 * 7.Match_API - Berisi Match API
+* 8.Payment_API - Berisi Payment API
 
 Untuk menjalankan project  ini silakan jalankan:
 
@@ -817,3 +818,70 @@ RESPON JSON
 ]
 ```
 
+### Payment API ###
+Berisi API untuk handle payment, yang dapat merubah setatus payment menjadi true hanya admin. Dan seperti biasa payment API ini memerlukan header token jwt.
+
+[POST] http://localhost:5050/api/v1/payment => API untuk create payment (konfirmasi payment)
+
+[PUT] http://localhost:5050/api/v1/payment/13 => API untuk merubah status payment menjadi true (Admin)
+
+**CREATE PAYMENT**
+
+[POST] http://localhost:5050/api/v1/payment
+
+Body JSON:
+
+```
+{
+  "no_rek": 1231234521,
+  "proof_of_transfer": "https://buktitransfer.jpg",
+  "status": "free"
+}
+```
+
+Repon JSON:
+
+```
+{
+    "no_rek": 1231234521,
+    "proof_of_transfer": "https://buktitransfer.jpg",
+    "status": "free",
+    "user": {
+        "id": 5,
+        "breeder": "Bowo",
+        "address": "Kab. Wonogiri, Jawa Tengah",
+        "phone": "081234567899",
+        "createdAt": "2020-02-22T10:59:47.000Z",
+        "updatedAt": "2020-02-22T10:59:47.000Z"
+    }
+}
+```
+
+**CREATE PAYMENT [ADMIN]**
+
+[PUT] http://localhost:5050/api/v1/payment/13
+
+Body JSON:
+
+```
+{
+  "status": "premium"
+}
+```
+
+Respon JSON:
+
+```
+{
+    "id": 13,
+    "no_rek": 1231234521,
+    "proof_of_transfer": "https://buktitransfer.jpg",
+    "status": "premium",
+    "user": {
+        "id": 5,
+        "breeder": "Bowo",
+        "address": "Kab. Wonogiri, Jawa Tengah",
+        "phone": "081234567899"
+    }
+}
+```
