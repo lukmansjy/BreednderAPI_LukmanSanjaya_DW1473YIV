@@ -61,6 +61,10 @@ app.group('/api/v1', (router)=>{
     router.put('/payment/:id', authenticated, PaymentController.updatePayment)
 })
 
+app.get('/', (req, res)=>{
+    res.send('Selamat Datang')
+})
+
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
         res.status(401).send({
