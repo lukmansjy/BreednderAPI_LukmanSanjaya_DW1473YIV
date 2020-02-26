@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParer = require('body-parser')
+const cors = require('cors')
 require('express-group-routes')
 
 // Middlewares
@@ -14,7 +15,8 @@ const MatchController = require('./controller/match')
 const PaymentController = require('./controller/payment')
 
 const app = express()
-const port = 5050
+const port = process.env.PORT || 5000
+app.use(cors())
 app.use(bodyParer.json())
 
 app.group('/api/v1', (router)=>{
