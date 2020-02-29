@@ -6,6 +6,25 @@ const Model = require('../models')
 const User = Model.user
 const Pet = Model.pet
 
+// function decode jwt
+const verifyJwt = (jwtHeader)=>{
+    let jwtData;
+    let authorization = jwtHeader.split(' ')[1], decoded;
+    try {
+        decoded = jwt.verify(authorization, secretKey);
+        jwtData = {
+            error: false,
+            values: decoded
+        }
+    } catch (e) {
+        jwtData = {
+            error: true,
+            values: null
+        }
+    }
+    return jwtData
+}
+
 exports.login = (req, res)=>{
     const email = req.body.email
     const password = req.body.password
@@ -17,7 +36,13 @@ exports.login = (req, res)=>{
                     const token = jwt.sign({userId: user.id}, secretKey)
                     res.send({
                         email: user.email,
-                        token: token
+                        token: token,
+                        id: user.id,
+                        breeder: user.breeder,
+                        email: user.email,
+                        phone: user.phone,
+                        address: user.address,
+                        admin: user.admin
                     })
                 } else {
                     res.status(401).send({
@@ -94,4 +119,28 @@ exports.register = (req, res)=>{
     })
     
     
+}
+
+
+exports.loginToken = (req, res)=>{
+    const jwtData = verifyJwt(req.headers.authorization)
+    if(!jwtData.error){
+        const userId = jwtData.values.userId
+        User.findOne({where: {id: userId}}).then(user => {
+            res.send({
+                email: user.email,
+                id: user.id,
+                breeder: user.breeder,
+                email: user.email,
+                phone: user.phone,
+                address: user.address,
+                admin: user.admin
+            })
+        })
+    }else{
+        res.status(400).send({
+            error: true,
+            message: 'Wrong Token'
+        })
+    }
 }
